@@ -5,6 +5,9 @@ import './App.scss';
 import ItemAddForm from '../ItemAddForm';
 import ItemList from '../ItemList';
 
+const AppContext = React.createContext();
+export { AppContext };
+
 const App = () => {
 
   const [items, setItems] = useState([
@@ -24,10 +27,12 @@ const App = () => {
   };
 
   return (
-    <div className="app">
-        <ItemAddForm addItem={addItem} />
-        <ItemList items={items} deleteItem={deleteItem} />
-    </div>
+    <AppContext.Provider value={{ deleteItem }}>
+      <div className="app">
+          <ItemAddForm addItem={addItem} />
+          <ItemList items={items} />
+      </div>
+    </AppContext.Provider>
   );
 }
 

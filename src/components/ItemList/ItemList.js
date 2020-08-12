@@ -4,12 +4,12 @@ import './ItemList.scss';
 
 import Item from '../Item';
 
-const ItemList = ({ items, deleteItem }) => {
+const ItemList = ({ items }) => {
 
   const itemsDom = items.map(item => {
     return (
       <li key={item.id}>
-        <Item {...item} deleteItem={deleteItem} />
+        <Item {...item} />
       </li>
     )
   })
