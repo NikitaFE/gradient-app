@@ -1,13 +1,22 @@
 import React from 'react';
 
-import './ItemList.css';
+import './ItemList.scss';
 
 import Item from '../Item';
 
-const ItemList = () => {
+const ItemList = ({ items, deleteItem }) => {
+
+  const itemsDom = items.map(item => {
+    return (
+      <li key={item.id}>
+        <Item {...item} deleteItem={deleteItem} />
+      </li>
+    )
+  })
+
   return (
-    <ul>
-      <Item />
+    <ul className="item-list">
+      {itemsDom}
     </ul>
   )
 };

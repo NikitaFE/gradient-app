@@ -1,15 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import './App.css';
+import './App.scss';
 
 import ItemAddForm from '../ItemAddForm';
 import ItemList from '../ItemList';
 
-function App() {
+const App = () => {
+
+  const [items, setItems] = useState([
+    {id: 1, first: '#e74c3c', second: '#3498db'},
+    {id: 2, first: '#e67e22', second: '#2ecc71'},
+    {id: 3, first: '#f1c40f', second: '#1abc9c'}
+  ]);
+
+  const addItem = (first, second) => {
+    const newItems = [...items, {first, second, id: Date.now()}];
+    setItems(newItems);
+  };
+
+  const deleteItem = (id) => {
+    const newItems = items.filter(item => item.id !== id);
+    setItems(newItems);
+  };
+
   return (
     <div className="app">
-      <ItemAddForm />
-      <ItemList />
+        <ItemAddForm addItem={addItem} />
+        <ItemList items={items} deleteItem={deleteItem} />
     </div>
   );
 }
